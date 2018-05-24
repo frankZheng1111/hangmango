@@ -2,9 +2,10 @@ package main
 
 import (
   "fmt"
-  "hangmango/config"
+  game "hangmango/models"
 )
 
 func main() {
-  fmt.Println(config.GameSettingConfig.Hp)
+  hangman := game.StartNewGame("test")
+  fmt.Println(hangman)
 }
