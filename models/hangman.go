@@ -1,10 +1,22 @@
 package models
 
 import (
-	_ "fmt"
+	"fmt"
 	"hangmango/config"
 	"strings"
+	"io/ioutil"
 )
+
+var dictionary []string
+
+func init() {
+  path := config.GameSettingConfig.DictionaryPath
+	content, err := ioutil.ReadFile(path)
+	if err != nil {
+		panic("missing dictionary_path in config")
+	}
+  fmt.Println(content)
+}
 
 type Hangman struct {
 	ProtoWord      string

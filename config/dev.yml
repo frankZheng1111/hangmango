@@ -1,3 +1,4 @@
 # hp = 10为可供重试的次数
-#
 hp: 20
+# 字典路径
+dictionary_path: dictionary.txt

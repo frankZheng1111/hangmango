@@ -7,7 +7,8 @@ import (
 )
 
 type GameSetting struct {
-	Hp int `yaml: hp`
+	DictionaryPath string `yaml:"dictionary_path"`
+	Hp int `yaml:"hp"`
 }
 
 var GameSettingConfig GameSetting
