@@ -13,7 +13,7 @@ type Hangman struct {
 	Hp             int
 }
 
-func StartNewGame(customWord string) *Hangman {
+func NewHangman(customWord string) *Hangman {
 	hangman := new(Hangman)
 	hangman.ProtoWord = customWord
 	hangman.WordLetters = make(map[string]bool)
@@ -25,15 +25,26 @@ func StartNewGame(customWord string) *Hangman {
 	return hangman
 }
 
-func (hangman *Hangman) isAlive() bool {
+func (hangman *Hangman) IsAlive() bool {
 	return hangman.Hp > 0
 }
 
-func (hangman *Hangman) isWin() bool {
+func (hangman *Hangman) IsWin() bool {
 	for _, hasGuessed := range hangman.WordLetters {
 		if !hasGuessed {
 			return false
 		}
 	}
 	return true
+}
+
+func (hangman *Hangman) CurrentWordStr() (wordStr string) {
+	for _, letter := range strings.Split(hangman.ProtoWord, "") {
+		if hasGuessed := hangman.WordLetters[letter]; hasGuessed {
+			wordStr += letter
+		} else {
+			wordStr += "*"
+		}
+	}
+	return
 }

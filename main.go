@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	game "hangmango/models"
+	"hangmango/models"
 )
 
 func main() {
-	hangman := game.StartNewGame("test")
+	hangman := models.NewHangman("test")
 	fmt.Println(hangman)
 }
