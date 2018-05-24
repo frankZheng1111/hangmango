@@ -3,19 +3,19 @@ package models
 import (
 	"fmt"
 	"hangmango/config"
-	"strings"
 	"io/ioutil"
+	"strings"
 )
 
-var dictionary []string
-
 func init() {
-  path := config.GameSettingConfig.DictionaryPath
+	path := config.GameSettingConfig.DictionaryPath
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		panic("missing dictionary_path in config")
 	}
-  fmt.Println(content)
+	for _, letter := range strings.Split(string(content), "\n") {
+		dictionary = append(dictionary, letter)
+	}
 }
 
 type Hangman struct {
