@@ -4,8 +4,12 @@ import (
 	"fmt"
 	"hangmango/config"
 	"io/ioutil"
+	"math/rand"
 	"strings"
+	"time"
 )
+
+var dictionary []string
 
 func init() {
 	path := config.GameSettingConfig.DictionaryPath
@@ -27,6 +31,13 @@ type Hangman struct {
 
 func NewHangman(customWord string) *Hangman {
 	hangman := new(Hangman)
+	if customWord == "" {
+		source := rand.NewSource(time.Now().Unix())
+		randMachine := rand.New(source)
+		randIndex := randMachine.Intn(len(dictionary) - 1)
+		fmt.Println(randIndex)
+		customWord = dictionary[randIndex]
+	}
 	hangman.ProtoWord = customWord
 	hangman.WordLetters = make(map[string]bool)
 	hangman.GuessedLetters = make(map[string]bool)

@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	hangman := models.NewHangman("test")
-	fmt.Println(hangman)
+	hangman := models.NewHangman("")
+	fmt.Println(hangman.CurrentWordStr(), hangman.ProtoWord)
 }
