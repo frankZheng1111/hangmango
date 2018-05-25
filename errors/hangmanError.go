@@ -1,9 +1,5 @@
 package errors
 
-import (
-	"fmt"
-)
-
 var MsgTexts map[string]string
 
 func init() {
@@ -19,9 +15,9 @@ type HangmanError struct {
 
 func (hangmanError *HangmanError) Error() string {
 	if msgText, ok := MsgTexts[hangmanError.msg]; ok {
-		return fmt.Sprintf(msgText)
+		return msgText
 	} else {
-		return fmt.Sprintf("Unknown Error")
+		return "Unknown Error"
 	}
 }
 
