@@ -19,8 +19,14 @@ type HangmanError struct {
 
 func (hangmanError *HangmanError) Error() string {
 	if msgText, ok := MsgTexts[hangmanError.msg]; ok {
-		return fmt.Sprintln(msgText)
+		return fmt.Sprintf(msgText)
 	} else {
-		return fmt.Sprintln("Unknown Error")
+		return fmt.Sprintf("Unknown Error")
 	}
+}
+
+func NewHangmanError(msg string) *HangmanError {
+	hangmanError := new(HangmanError)
+	hangmanError.msg = msg
+	return hangmanError
 }

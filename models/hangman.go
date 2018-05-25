@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"hangmango/config"
+	"hangmango/errors"
 	"io/ioutil"
 	"math/rand"
 	"strings"
@@ -18,7 +19,7 @@ func init() {
 		panic("missing dictionary_path in config")
 	}
 	for _, letter := range strings.Split(string(content), "\n") {
-		dictionary = append(dictionary, letter)
+		dictionary = append(dictionary, strings.ToLower(letter))
 	}
 }
 
@@ -46,6 +47,33 @@ func NewHangman(customWord string) *Hangman {
 		hangman.WordLetters[letter] = false
 	}
 	return hangman
+}
+
+func (hangman *Hangman) Guess(letter string) error {
+	if !hangman.IsAlive() || hangman.IsWin() {
+		return errors.NewHangmanError("game.already.end")
+	}
+	if len(letter) > 1 {
+		hangman.Hp--
+		return errors.NewHangmanError("input.multi.letter")
+	}
+	if len(letter) < 1 {
+		hangman.Hp--
+		return errors.NewHangmanError("input.nothing")
+	}
+	if _, ok := hangman.GuessedLetters[letter]; ok {
+		hangman.Hp--
+		return errors.NewHangmanError("input.guessed.letter")
+	}
+
+	hangman.GuessedLetters[letter] = true
+	if _, ok := hangman.WordLetters[letter]; ok {
+		hangman.WordLetters[letter] = true
+	} else {
+		hangman.Hp--
+	}
+
+	return nil
 }
 
 func (hangman *Hangman) IsAlive() bool {

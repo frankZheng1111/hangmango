@@ -40,8 +40,19 @@ func startNewHangman(score *Score) {
 	score.PlayCount++
 	hangman := models.NewHangman("")
 	fmt.Println(hangman.CurrentWordStr(), hangman.ProtoWord)
+	var letter string
+	for !hangman.IsWin() && hangman.IsAlive() {
+		letter = ""
+		fmt.Printf("You have %d more change. Please Guess a letter: ", hangman.Hp)
+		fmt.Scanln(&letter)
+		if err := hangman.Guess(letter); err != nil {
+			fmt.Printf("\nWarning: %s!\n", err)
+		}
+		fmt.Printf("\nTARGET WORD: %s\n\n", hangman.CurrentWordStr())
+	}
 	if hangman.IsWin() {
 		score.WinCount++
+		fmt.Println("YOU WIN!")
 	}
 	return
 }
@@ -50,7 +61,7 @@ func printScore(score Score) {
 	fmt.Println("")
 	fmt.Println("#############################################################################")
 	fmt.Println("")
-	fmt.Printf("YOU SCORE: | WIN: %d TIMES | PLAY: %d TIMES | RATE: %.3f %% \n", score.WinCount, score.PlayCount, score.WinRate())
+	fmt.Printf("YOU SCORE: | WIN: %d TIMES | PLAY: %d TIMES | RATE: %.2f %% \n", score.WinCount, score.PlayCount, score.WinRate())
 	fmt.Println("")
 	fmt.Println("#############################################################################")
 }
