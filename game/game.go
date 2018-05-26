@@ -60,7 +60,7 @@ func startNewHangman(score *Score) {
 }
 
 func printScore(score Score) {
-	fmt.Println("\n#############################################################################\n")
+	fmt.Printf("\n#############################################################################\n\n")
 	fmt.Printf("YOU SCORE: | WIN: %d TIMES | PLAY: %d TIMES | RATE: %.2f %% \n", score.WinCount, score.PlayCount, score.WinRate())
-	fmt.Println("\n#############################################################################\n")
+	fmt.Printf("\n#############################################################################\n\n")
 }
