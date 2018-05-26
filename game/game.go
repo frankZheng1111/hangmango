@@ -53,6 +53,8 @@ func startNewHangman(score *Score) {
 	if hangman.IsWin() {
 		score.WinCount++
 		fmt.Println("YOU WIN!")
+	} else {
+		fmt.Println("YOU LOSE!")
 	}
 	return
 }
