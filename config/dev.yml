@@ -1,4 +1,4 @@
 # hp为可供重试的次数
 hp: 7
 # 字典路径
-dictionary_path: config/dictionary.txt
+dictionary_name: dictionary.txt

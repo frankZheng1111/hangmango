@@ -6,6 +6,7 @@ import (
 	"hangmango/errors"
 	"io/ioutil"
 	"math/rand"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -13,7 +14,7 @@ import (
 var dictionary []string
 
 func init() {
-	path := config.GameSettingConfig.DictionaryPath
+	path := filepath.Join(config.CONFIG_FOLDER_PATH, config.GameSettingConfig.DictionaryName)
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		panic("missing dictionary_path in config")
