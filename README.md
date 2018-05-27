@@ -6,7 +6,6 @@ Just for practice：A simple command line hangman game based on golang
 - need [glide](https://github.com/Masterminds/glide)
   ```
   glide install
-
   ```
 
 ## Run unit test
