@@ -21,3 +21,9 @@ func TestPrintScore(t *testing.T) {
 	score := new(Score)
 	printScore(*score)
 }
+
+func TestStartNewHangman(t *testing.T) {
+	score := new(Score)
+	startNewHangman(score)
+	assert.Equal(t, score.PlayCount, 1)
+}
