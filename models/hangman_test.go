@@ -1,12 +1,15 @@
 package models
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestHangmanIsAlive(t *testing.T) {
 	hangman := new(Hangman)
 	hangman.Hp = 0
-	isAlive := hangman.IsAlive()
-	if isAlive {
-		t.Error("TestHangmanIsAlive fail")
-	}
+	hangman.IsAlive()
+	assert.False(t, hangman.IsAlive())
+	hangman.Hp = 1
+	assert.True(t, hangman.IsAlive())
 }

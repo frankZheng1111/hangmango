@@ -1,10 +1,11 @@
 package game
 
-import "testing"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestWinRateReturnZero(t *testing.T) {
 	score := new(Score)
-	if score.WinRate() != 0 {
-		t.Error("TestWinRateReturnZero fail")
-	}
+	assert.Equal(t, score.WinRate(), float64(0))
 }
