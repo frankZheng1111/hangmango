@@ -39,7 +39,6 @@ func Play() {
 func startNewHangman(score *Score) {
 	score.PlayCount++
 	hangman := models.NewHangman("")
-	fmt.Println(hangman.CurrentWordStr(), hangman.ProtoWord)
 	var letter string
 	for !hangman.IsWin() && hangman.IsAlive() {
 		letter = ""
