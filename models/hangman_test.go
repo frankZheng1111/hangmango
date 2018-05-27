@@ -53,13 +53,29 @@ func TestHangmanIsWin(t *testing.T) {
 	assert.False(t, hangman.IsWin())
 }
 
-// func TestHangmanIsWin(t *testing.T) {
-// 	hangman := new(Hangman)
-// 	hangman.Hp = 0
-// 	assert.False(t, hangman.IsWin())
-// 	hangman.Hp = 1
-// 	hangman.WordLetters = map[string]bool{"a": true}
-// 	assert.True(t, hangman.IsWin())
-// 	hangman.WordLetters["b"] = false
-// 	assert.False(t, hangman.IsWin())
-// }
+func TestHangmanCurrentWordStr(t *testing.T) {
+	hangman := new(Hangman)
+	hangman.ProtoWord = "abab"
+	hangman.WordLetters = map[string]bool{"a": true, "b": false}
+	assert.Equal(t, hangman.CurrentWordStr(), "a*a*")
+}
+
+func TestHangmanGuess(t *testing.T) {
+	hangman := NewHangman("test")
+	hangman.Hp = 0
+	assert.NotNil(t, hangman.Guess("t"))
+	hangman.Hp = 10
+	assert.NotNil(t, hangman.Guess("ta"))
+	assert.Equal(t, hangman.Hp, 9)
+	assert.NotNil(t, hangman.Guess(""))
+	assert.Equal(t, hangman.Hp, 8)
+	hangman.Guess("t")
+	assert.True(t, hangman.GuessedLetters["t"])
+	assert.True(t, hangman.WordLetters["t"])
+	assert.Equal(t, hangman.Hp, 8)
+	hangman.Guess("a")
+	assert.Equal(t, hangman.Hp, 7)
+	assert.True(t, hangman.GuessedLetters["a"])
+	assert.NotNil(t, hangman.Guess("a"))
+	assert.Equal(t, hangman.Hp, 6)
+}
