@@ -1,0 +1,4 @@
+# hp为可供重试的次数
+hp: 10
+# 字典路径
+dictionary_name: dictionary_test.txt

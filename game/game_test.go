@@ -9,3 +9,8 @@ func TestWinRateReturnZero(t *testing.T) {
 	score := new(Score)
 	assert.Equal(t, score.WinRate(), float64(0))
 }
+
+func TestPrintScore(t *testing.T) {
+	score := new(Score)
+	printScore(*score)
+}

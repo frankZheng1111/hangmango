@@ -25,7 +25,8 @@ var GO_ENV string
 var CONFIG_FOLDER_PATH string
 
 var VALID_ENV map[string]bool = map[string]bool{
-	"dev": true,
+	"dev":  true,
+	"test": true,
 }
 
 func init() {

@@ -82,6 +82,9 @@ func (hangman *Hangman) IsAlive() bool {
 }
 
 func (hangman *Hangman) IsWin() bool {
+	if !hangman.IsAlive() {
+		return false
+	}
 	for _, hasGuessed := range hangman.WordLetters {
 		if !hasGuessed {
 			return false
